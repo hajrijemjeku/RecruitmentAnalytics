@@ -1,4 +1,4 @@
-/* ============================================================
+/* 
    RECRUITMENT & HIRING ANALYTICS
    SQL Server Database Setup
 
@@ -12,13 +12,13 @@
    - Alter existing tables with new columns
    - Add new relationships and constraints
 
-   Database: JobRecruitmentDB
-   ============================================================ */
+   Database: RecruitmentAnalytics
+*/
 
 
-/* ============================================================
+/* 
    1. RESET DATABASE
-   ============================================================ */
+*/
 
 USE master;
 GO
@@ -34,9 +34,9 @@ END;
 GO
 
 
-/* ============================================================
+/* 
    2. CREATE DATABASE
-   ============================================================ */
+    */
 
 CREATE DATABASE RecruitmentAnalytics;
 GO
@@ -45,9 +45,9 @@ USE RecruitmentAnalytics;
 GO
 
 
-/* ============================================================
+/* 
    3. CREATE SOURCE TABLE: Companies
-   ============================================================ */
+    */
 
 CREATE TABLE dbo.Companies
 (
@@ -63,9 +63,9 @@ CREATE TABLE dbo.Companies
 GO
 
 
-/* ============================================================
+/* 
    4. CREATE SOURCE TABLE: Candidates
-   ============================================================ */
+    */
 
 CREATE TABLE dbo.Candidates
 (
@@ -85,9 +85,9 @@ CREATE TABLE dbo.Candidates
 GO
 
 
-/* ============================================================
+/* 
    5. CREATE SOURCE TABLE: Jobs
-   ============================================================ */
+    */
 
 CREATE TABLE dbo.Jobs
 (
@@ -117,9 +117,9 @@ CREATE TABLE dbo.Jobs
 GO
 
 
-/* ============================================================
+/* 
    6. CREATE SOURCE TABLE: Applications
-   ============================================================ */
+    */
 
 CREATE TABLE dbo.Applications
 (
@@ -143,9 +143,9 @@ CREATE TABLE dbo.Applications
 GO
 
 
-/* ============================================================
+/* 
    7. CREATE SOURCE TABLE: Interviews
-   ============================================================ */
+    */
 
 CREATE TABLE dbo.Interviews
 (
@@ -161,9 +161,9 @@ CREATE TABLE dbo.Interviews
 GO
 
 
-/* ============================================================
+/* 
    8. CREATE SOURCE TABLE: Offers
-   ============================================================ */
+    */
 
 CREATE TABLE dbo.Offers
 (
@@ -180,9 +180,9 @@ CREATE TABLE dbo.Offers
 GO
 
 
-/* ============================================================
-   9. ADD FOREIGN KEY: Jobs → Companies
-   ============================================================ */
+/*
+   9. ADD FOREIGN KEYS
+*/
 
 ALTER TABLE dbo.Jobs
 ADD CONSTRAINT FK_Jobs_Companies
@@ -191,9 +191,6 @@ ADD CONSTRAINT FK_Jobs_Companies
 GO
 
 
-/* ============================================================
-   10. ADD FOREIGN KEY: Applications → Jobs
-   ============================================================ */
 
 ALTER TABLE dbo.Applications
 ADD CONSTRAINT FK_Applications_Jobs
@@ -202,9 +199,6 @@ ADD CONSTRAINT FK_Applications_Jobs
 GO
 
 
-/* ============================================================
-   11. ADD FOREIGN KEY: Applications → Candidates
-   ============================================================ */
 
 ALTER TABLE dbo.Applications
 ADD CONSTRAINT FK_Applications_Candidates
@@ -213,9 +207,6 @@ ADD CONSTRAINT FK_Applications_Candidates
 GO
 
 
-/* ============================================================
-   12. ADD FOREIGN KEY: Interviews → Applications
-   ============================================================ */
 
 ALTER TABLE dbo.Interviews
 ADD CONSTRAINT FK_Interviews_Applications
@@ -224,9 +215,6 @@ ADD CONSTRAINT FK_Interviews_Applications
 GO
 
 
-/* ============================================================
-   13. ADD FOREIGN KEY: Offers → Applications
-   ============================================================ */
 
 ALTER TABLE dbo.Offers
 ADD CONSTRAINT FK_Offers_Applications
@@ -235,9 +223,9 @@ ADD CONSTRAINT FK_Offers_Applications
 GO
 
 
-/* ============================================================
-   14. CREATE NEW TABLE: Departments
-   ============================================================ */
+/*
+   10. CREATE NEW TABLES
+*/
 
 CREATE TABLE dbo.Departments
 (
@@ -255,9 +243,6 @@ CREATE TABLE dbo.Departments
 GO
 
 
-/* ============================================================
-   15. CREATE NEW TABLE: Recruiters
-   ============================================================ */
 
 CREATE TABLE dbo.Recruiters
 (
@@ -285,9 +270,6 @@ CREATE TABLE dbo.Recruiters
 GO
 
 
-/* ============================================================
-   16. CREATE NEW TABLE: Assessments
-   ============================================================ */
 
 CREATE TABLE dbo.Assessments
 (
@@ -317,18 +299,18 @@ CREATE TABLE dbo.Assessments
 GO
 
 
-/* ============================================================
-   17. ALTER JOBS: ADD DEPARTMENT COLUMN
-   ============================================================ */
+/* 
+   11. ALTER JOBS: ADD DEPARTMENT COLUMN
+*/
 
 ALTER TABLE dbo.Jobs
 ADD department_id INT NULL;
 GO
 
 
-/* ============================================================
-   18. ADD FOREIGN KEY: Jobs → Departments
-   ============================================================ */
+/*
+   12. ADD FOREIGN KEY:
+*/
 
 ALTER TABLE dbo.Jobs
 ADD CONSTRAINT FK_Jobs_Departments
@@ -337,18 +319,13 @@ ADD CONSTRAINT FK_Jobs_Departments
 GO
 
 
-/* ============================================================
-   19. ALTER APPLICATIONS: ADD RECRUITER COLUMN
-   ============================================================ */
+
 
 ALTER TABLE dbo.Applications
 ADD recruiter_id INT NULL;
 GO
 
 
-/* ============================================================
-   20. ADD FOREIGN KEY: Applications → Recruiters
-   ============================================================ */
 
 ALTER TABLE dbo.Applications
 ADD CONSTRAINT FK_Applications_Recruiters
@@ -357,18 +334,16 @@ ADD CONSTRAINT FK_Applications_Recruiters
 GO
 
 
-/* ============================================================ 
-   21. ALTER TABLE EXAMPLE: DROP COLUMN 
-   ============================================================ */
+
 
 ALTER TABLE dbo.Jobs 
 DROP COLUMN notes; 
 GO
 
 
-/* ============================================================
-   22. FINAL STRUCTURE CHECK
-   ============================================================ */
+/* 
+   13. FINAL STRUCTURE CHECK
+*/
 
 SELECT
     TABLE_NAME,
@@ -383,9 +358,9 @@ ORDER BY
 GO
 
 
-/* ============================================================
-   23. FINAL TABLE LIST
-   ============================================================ */
+/* 
+   14. FINAL TABLE LIST
+ */
 
 SELECT
     TABLE_NAME
