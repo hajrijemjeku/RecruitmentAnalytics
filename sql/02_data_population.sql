@@ -25,7 +25,7 @@ GO
 
 
 BULK INSERT dbo.Candidates
-FROM 'C:\Users\NewAdmin123\Desktop\creativehubkos\sql\projects\recruitmentanalytics\data\candidates.csv'
+FROM '\candidates.csv'
 WITH (
     FIRSTROW = 2,
     FIELDTERMINATOR = ',',
@@ -53,7 +53,7 @@ GO
 
 -- 2. Bulk insert into the view (leaves department_id as NULL)
 BULK INSERT dbo.vw_Jobs_BulkImport
-FROM 'C:\Users\NewAdmin123\Desktop\creativehubkos\sql\projects\recruitmentanalytics\data\jobs.csv'
+FROM '\jobs.csv'
 WITH (
     FIRSTROW = 2,
     FIELDTERMINATOR = ',',
@@ -81,7 +81,7 @@ GO
 
 -- 2. Bulk insert into the view (leaves recruiter_id as NULL)
 BULK INSERT dbo.vw_Applications_BulkImport
-FROM 'C:\Users\NewAdmin123\Desktop\creativehubkos\sql\projects\recruitmentanalytics\data\applications.csv'
+FROM '\applications.csv'
 WITH (
     FIRSTROW = 2,
     FIELDTERMINATOR = ',',
@@ -95,7 +95,7 @@ DROP VIEW dbo.vw_Applications_BulkImport;
 GO
 
 BULK INSERT dbo.Interviews
-FROM 'C:\Users\NewAdmin123\Desktop\creativehubkos\sql\projects\recruitmentanalytics\data\interviews.csv'
+FROM '\interviews.csv'
 WITH (
     FIRSTROW = 2,
     FIELDTERMINATOR = ',',
@@ -106,7 +106,7 @@ GO
 ALTER TABLE dbo.Offers
 ALTER COLUMN accepted VARCHAR(10) NOT NULL;
 BULK INSERT dbo.Offers
-FROM 'C:\Users\NewAdmin123\Desktop\creativehubkos\sql\projects\recruitmentanalytics\data\offers.csv'
+FROM '\offers.csv'
 WITH (
     FIRSTROW = 2,
     FIELDTERMINATOR = ',',
